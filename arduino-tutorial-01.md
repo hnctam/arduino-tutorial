@@ -30,4 +30,14 @@ void loop() {
 
 ![alt](images/tutorial-01/arduino-upload.png) Nhấn nút này để tải ứng dụng lên board mạch.
 
+## Lưu trữ chương trình Blink
+Em có thể lưu trữ chương trình Blink đã phát triển bằng hộp thoại “Save As”
+![alt](images/tutorial-01/arduino-save-as.png)
 
+## Nhấp nháy tốc độ nhanh hơn
+Em giảm thời gian delay, tốc độ nhấp nháy của đèn sẽ nhanh hơn.
+![alt](images/tutorial-01/arduino-change-delay-time.png)
+
+## Thực hành khác
+### Bài tập 1
+-	Em lập trình để được đèn nhấp nháy theo thứ tự: SÁNG 1 giây / TỐI 1 giây / SÁNG 2 giây/ TỐI 2 giây/ SÁNG 3 giây/ TỐI 3 giây…
