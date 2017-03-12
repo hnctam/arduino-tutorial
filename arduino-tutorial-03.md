@@ -201,7 +201,7 @@ void setColor(int red, int green, int blue)
 * Em hãy thay đổi chương trình để đèn hiển thị các màu sau:
 Em có thể tham khảo hình sau để thiết lập màu:
 ![alt](http://expressmagazine.net/sites/default/files/images/2013/01/02/rgb-color-wheel-lg-Custom1.jpg)
-  - Màu tím (125-0-255)
+  - Màu tím (255, 0, 255)
   - Màu vàng (255-255-0)
 
 * Em hãy thay đổi chương trình để có thể hiển thị nhiều màu sắc hơn
