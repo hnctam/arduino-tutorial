@@ -58,7 +58,7 @@ void loop()
   setColor(0, 255, 255);  // aqua
   delay(1000);
 }
- 
+
 void setColor(int red, int green, int blue)
 {
   analogWrite(redPin, red);
