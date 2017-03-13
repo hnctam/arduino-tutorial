@@ -93,6 +93,9 @@ const int RED_PIN = 13;
 const int GREEN_PIN = 12;
 const int BLUE_PIN = 11;
 
+// Khai báo thời gian nghỉ giữa các lần xử lý
+const int DELAY_TIME = 500;
+
 // Biến đếm count sẽ dùng cho việc thay đổi màu đèn, ví dụ 0 cho màu đỏ, 1 cho màu xanh lá và 2 cho màu xanh dương
 int count = 0;
 ```
@@ -129,6 +132,8 @@ void loop() {
 
   // Tăng biến đếm thêm 1 cho lần lặp tiếp theo
   count++;
+
+  delay(DELAY_TIME);
 }
 ```
 
@@ -151,6 +156,7 @@ const int RED_PIN = 13;
 const int GREEN_PIN = 12;
 const int BLUE_PIN = 11;
 
+// Khai báo thời gian nghỉ giữa các lần xử lý
 const int DELAY_TIME = 500;
 
 // Biến đếm count sẽ dùng cho việc thay đổi màu đèn, ví dụ 0 cho màu đỏ, 1 cho màu xanh lá và 2 cho màu xanh dương
