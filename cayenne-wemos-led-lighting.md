@@ -54,11 +54,13 @@ Hai bước sau dùng để đăng ký thiết bị mới với Cayenne:
 * Ghi nhớ mã an ninh dùng để kết nối với Cayenne
 
 ![alt](images/tutorial-05/cayenne-got-authen-token.png)
-### Ráp mạch:
+
+### Bật tắt đèn LED từ Cayenne
+#### Ráp mạch:
 Hình sau mô tả mạch ráp để bật đèn LED. Pin D7 sẽ được dùng để kích nguồn cho đèn.
 ![alt](images/tutorial-05/wemos-board-led.jpg)
 
-### Mã chương trình
+#### Mã chương trình
 * Khai báo các thư viên liên quan
 
 Các thư viện Cayenne và 8266 được khai báo để sử dụng trong ứng dụng:
@@ -144,3 +146,5 @@ CAYENNE_IN(V7)
   }  
 }
 ```
+
+### Bật tắt đèn LED RGB từ Cayenne
