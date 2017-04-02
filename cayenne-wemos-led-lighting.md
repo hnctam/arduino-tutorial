@@ -110,7 +110,7 @@ void loop()
   Cayenne.run();
 }
 
-// This function will be called every time a Dashboard widget writes a value to Virtual Pin 2.
+// Phương thức này sẽ được gọi khi đối tượng giao diện ghi giá trị cho chân ảo V2.
 CAYENNE_IN(V2)
 {
   CAYENNE_LOG("Got a value: %s", getValue.asStr());
@@ -126,17 +126,20 @@ CAYENNE_IN(V2)
   }  
 }
 
+// Phương thức này sẽ được gọi khi đối tượng giao diện ghi giá trị cho chân ảo V7.
 CAYENNE_IN(V7)
 {
   CAYENNE_LOG("Got a value: %s", getValue.asStr());
+  // Truy xuất dữ liệu từ Cayenne
   int i = getValue.asInt();
-  
   if (i == 0)
   {
+    // Nếu dữ liệu từ Cayenne là 0, ghi mức HIGH ra chân xuất D7
     digitalWrite(D7, HIGH);
   }
   else
   {
+    // Nếu dữ liệu từ Cayenne là 1, ghi mức LOW ra chân xuất D7
     digitalWrite(D7, LOW);
   }  
 }
