@@ -42,3 +42,6 @@ Hình trên là hiển thị của Arduino IDE sau khi cài đặt hoàn thành.
 ## Thiết kế mạch bật tắt đèn LED
 Tương tự Arduino, WeMos dễ dàng để lập trình và thiết kế mạch. Mạch sau dùng để bật tắt đèn LED theo chân D7.
 
+### Ráp mạch:
+Hình sau mô tả mạch ráp để bật đèn LED. Pin D7 sẽ được dùng để kích nguồn cho đèn.
+![alt](images/tutorial-05/wemos-board-led.jpg)
