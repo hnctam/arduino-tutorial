@@ -74,10 +74,12 @@ Hình sau mô tả mạch hiển thị LED RGB, đã gắn sẵn các điện tr
 ![alt](images/tutorial-03/module-led-rgb.png)
 
 Mạch đi kèm 1 bộ dây chuẩn giúp em dễ thao tác với mạch Arduino.
+
 ![alt](images/tutorial-03/module-led-rgb-wire.png)
 
 ### Ráp mạch
 Hình sau mô tả cách thức ráp mạch Arduino với mạch hiển thị LED RGB.
+
 ![alt](images/tutorial-03/module-led-rgb-assemble.png)
 
 * Ghi chú:
