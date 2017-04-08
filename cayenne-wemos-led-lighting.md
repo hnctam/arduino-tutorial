@@ -149,6 +149,18 @@ CAYENNE_IN(V7)
 ```
 
 ### Bật tắt đèn LED RGB từ Cayenne
+#### Yêu cầu
+* Lắp đèn LED RGB với board WeMos. Các chân D7, D6, D5 của WeMos nối vào các chân RED, GREEN, BLUE của mạch LED RGB.
+* Đèn LED RGB sẽ thay đổi màu theo trình tự:
+  * Đỏ
+  * Cam
+  * Vàng
+  * Lục
+  * Lam
+  * Chàm
+  * Tím
+  * Tắt
+* Thiết lập Cayenne các slider để thay đổi giá trị của các chân RED, GREEN, BLUE. Sau khi thiết lập, đèn sẽ giữ màu được chọn trong vòng 10 giây, sau đó tiếp tục chớp tắt đổi màu.
 #### Ráp mạch
 Hình sau mô tả mạch ráp để bật đèn LED. Pin D7, D6, D5 sẽ được dùng để kích nguồn cho đèn.
 
