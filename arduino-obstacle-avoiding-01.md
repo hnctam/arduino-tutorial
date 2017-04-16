@@ -103,42 +103,170 @@ void rotateRight(int angle)
 }
 
 void driveForward() {
-  digitalWrite(motorLeft[0], HIGH); 
-  digitalWrite(motorLeft[1], LOW); 
-  
-  digitalWrite(motorRight[0], HIGH); 
-  digitalWrite(motorRight[1], LOW); 
+  digitalWrite(motorLeft[0], HIGH);
+  digitalWrite(motorLeft[1], LOW);
+
+  digitalWrite(motorRight[0], HIGH);
+  digitalWrite(motorRight[1], LOW);
 }
 
 void driveBackward() {
-  digitalWrite(motorLeft[0], LOW); 
-  digitalWrite(motorLeft[1], HIGH); 
-  
-  digitalWrite(motorRight[0], LOW); 
-  digitalWrite(motorRight[1], HIGH); 
+  digitalWrite(motorLeft[0], LOW);
+  digitalWrite(motorLeft[1], HIGH);
+
+  digitalWrite(motorRight[0], LOW);
+  digitalWrite(motorRight[1], HIGH);
 }
 
 void turnLeft() {
-  digitalWrite(motorLeft[0], LOW); 
-  digitalWrite(motorLeft[1], HIGH); 
-  
-  digitalWrite(motorRight[0], HIGH); 
+  digitalWrite(motorLeft[0], LOW);
+  digitalWrite(motorLeft[1], HIGH);
+
+  digitalWrite(motorRight[0], HIGH);
   digitalWrite(motorRight[1], LOW);
 }
 
 void turnRight() {
-  digitalWrite(motorLeft[0], HIGH); 
-  digitalWrite(motorLeft[1], LOW); 
+  digitalWrite(motorLeft[0], HIGH);
+  digitalWrite(motorLeft[1], LOW);
   
   digitalWrite(motorRight[0], LOW); 
-  digitalWrite(motorRight[1], HIGH); 
+  digitalWrite(motorRight[1], HIGH);
 }
 
 void motorStop(){
-  digitalWrite(motorLeft[0], LOW); 
-  digitalWrite(motorLeft[1], LOW); 
+  digitalWrite(motorLeft[0], LOW);
+  digitalWrite(motorLeft[1], LOW);
+
+  digitalWrite(motorRight[0], LOW);
+  digitalWrite(motorRight[1], LOW);
+}
+
+// Tính toán khoảng cách đến chướng ngại vật với sensor HC-SR04
+int calculateDistance() {
+  int distance = 0;
+  // biến đo thời gian
+  unsigned long duration;
+  // Phát xung từ chân trig
+  // {ắt chân TRIGGER
+  digitalWrite(TRIG_PIN,0);
+  delayMicroseconds(2);
+  // phát xung từ chân trig
+  digitalWrite(TRIG_PIN,1);
+  // Dừng 5 microSeconds
+  delayMicroseconds(5);
+
+  // Tắt chân trig
+  digitalWrite(TRIG_PIN,0);
+
+  /* Tính toán thời gian */
+  // Đo độ rộng xung HIGH ở chân echo.
+  duration = pulseIn(ECHO_PIN,HIGH);
+
+  // Tính khoảng cách đến vật bằng cách chia cho [2 * 29.412]
+  distance = int(duration/2/29.412);
+  /* In kết quả ra Serial Monitor */
+  if (DEBUG_LOG)
+  {
+    Serial.print(distance);
+    Serial.println(" (cm)");
+  }
+
+  return distance;
+}
+```
+
+### Mã chương trình - Đổi chân điều khiển động cơ
+```C
+// Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
+#define MAX_DISTANCE_FROM_OBSTACLE 20
+const int ECHO_PIN = 7;     // chân Echo của HC-SR04
+const int TRIG_PIN = 8;     // chân Trig của HC-SR04
+
+
+// Biến lưu trữ khoảng cách
+bool DEBUG_LOG = true;
+
+int motorLeft[] = {11, 10};
+int motorRight[] = {9, 6};
+
+// Thiết lập
+void setup() {
+  // Mã thiết lập Arduino
+  // Giao tiếp Serial với baudrate 9600
+  Serial.begin(9600);
+  // Cài đặt chân trig sẽ phát tín hiệu
+  pinMode(TRIG_PIN, OUTPUT);
+  // Cài đặt chân echo sẽ nhận tín hiệu
+  pinMode(ECHO_PIN, INPUT);
+
+  for(int i = 0; i < 2; i++){
+    pinMode(motorLeft[i], OUTPUT);
+    pinMode(motorRight[i], OUTPUT);
+  }
+}
+
+// Lặp và xử lý
+void loop() {
+  int distance = calculateDistance();
+  if (distance < MAX_DISTANCE_FROM_OBSTACLE)
+  {
+    rotateRight(90);
+  }
+  else
+  {
+    driveForward();
+  }
+  delay(1000);
+}
+
+void rotateRight(int angle)
+{
+  for(int i=0; i < angle; i++)
+  {
+    turnRight();
+    // Nghỉ 25 ms sau đó tiếp tục rẽ phải
+    delay(25);
+  }
+}
+
+void driveForward() {
+  digitalWrite(motorLeft[0], HIGH);
+  digitalWrite(motorLeft[1], LOW);
   
-  digitalWrite(motorRight[0], LOW); 
+  digitalWrite(motorRight[0], HIGH);
+  digitalWrite(motorRight[1], LOW);
+}
+
+void driveBackward() {
+  digitalWrite(motorLeft[0], LOW);
+  digitalWrite(motorLeft[1], HIGH);
+  
+  digitalWrite(motorRight[0], LOW);
+  digitalWrite(motorRight[1], HIGH);
+}
+
+void turnLeft() {
+  digitalWrite(motorLeft[0], LOW);
+  digitalWrite(motorLeft[1], HIGH);
+  
+  digitalWrite(motorRight[0], HIGH);
+  digitalWrite(motorRight[1], LOW);
+}
+
+void turnRight() {
+  digitalWrite(motorLeft[0], HIGH);
+  digitalWrite(motorLeft[1], LOW);
+  
+  digitalWrite(motorRight[0], LOW);
+  digitalWrite(motorRight[1], HIGH);
+}
+
+void motorStop(){
+  digitalWrite(motorLeft[0], LOW);
+  digitalWrite(motorLeft[1], LOW);
+  
+  digitalWrite(motorRight[0], LOW);
   digitalWrite(motorRight[1], LOW);
 }
 
