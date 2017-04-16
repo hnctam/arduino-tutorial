@@ -187,8 +187,8 @@ const int TRIG_PIN = 8;     // chân Trig của HC-SR04
 // Biến lưu trữ khoảng cách
 bool DEBUG_LOG = true;
 
-int motorLeft[] = {11, 10};
-int motorRight[] = {9, 6};
+int motorLeft[] = {10, 11};
+int motorRight[] = {6, 9};
 
 // Thiết lập
 void setup() {
@@ -198,7 +198,7 @@ void setup() {
   // Cài đặt chân trig sẽ phát tín hiệu
   pinMode(TRIG_PIN, OUTPUT);
   // Cài đặt chân echo sẽ nhận tín hiệu
-  pinMode(ECHO_PIN, INPUT);
+  pinMode(ECHO_PIN, INPUT);    
 
   for(int i = 0; i < 2; i++){
     pinMode(motorLeft[i], OUTPUT);
@@ -211,7 +211,7 @@ void loop() {
   int distance = calculateDistance();
   if (distance < MAX_DISTANCE_FROM_OBSTACLE)
   {
-    rotateRight(90);
+    stopMove();
   }
   else
   {
@@ -220,6 +220,14 @@ void loop() {
   delay(1000);
 }
 
+void stopMove()
+{
+  digitalWrite(motorLeft[0], LOW); 
+  digitalWrite(motorLeft[1], LOW); 
+  
+  digitalWrite(motorRight[0], LOW); 
+  digitalWrite(motorRight[1], LOW); 
+}
 void rotateRight(int angle)
 {
   for(int i=0; i < angle; i++)
@@ -231,42 +239,42 @@ void rotateRight(int angle)
 }
 
 void driveForward() {
-  digitalWrite(motorLeft[0], HIGH);
-  digitalWrite(motorLeft[1], LOW);
+  digitalWrite(motorLeft[0], HIGH); 
+  digitalWrite(motorLeft[1], LOW); 
   
-  digitalWrite(motorRight[0], HIGH);
-  digitalWrite(motorRight[1], LOW);
+  digitalWrite(motorRight[0], HIGH); 
+  digitalWrite(motorRight[1], LOW); 
 }
 
 void driveBackward() {
-  digitalWrite(motorLeft[0], LOW);
-  digitalWrite(motorLeft[1], HIGH);
+  digitalWrite(motorLeft[0], LOW); 
+  digitalWrite(motorLeft[1], HIGH); 
   
-  digitalWrite(motorRight[0], LOW);
-  digitalWrite(motorRight[1], HIGH);
+  digitalWrite(motorRight[0], LOW); 
+  digitalWrite(motorRight[1], HIGH); 
 }
 
 void turnLeft() {
-  digitalWrite(motorLeft[0], LOW);
-  digitalWrite(motorLeft[1], HIGH);
+  digitalWrite(motorLeft[0], LOW); 
+  digitalWrite(motorLeft[1], HIGH); 
   
-  digitalWrite(motorRight[0], HIGH);
+  digitalWrite(motorRight[0], HIGH); 
   digitalWrite(motorRight[1], LOW);
 }
 
 void turnRight() {
-  digitalWrite(motorLeft[0], HIGH);
-  digitalWrite(motorLeft[1], LOW);
+  digitalWrite(motorLeft[0], HIGH); 
+  digitalWrite(motorLeft[1], LOW); 
   
-  digitalWrite(motorRight[0], LOW);
-  digitalWrite(motorRight[1], HIGH);
+  digitalWrite(motorRight[0], LOW); 
+  digitalWrite(motorRight[1], HIGH); 
 }
 
 void motorStop(){
-  digitalWrite(motorLeft[0], LOW);
-  digitalWrite(motorLeft[1], LOW);
+  digitalWrite(motorLeft[0], LOW); 
+  digitalWrite(motorLeft[1], LOW); 
   
-  digitalWrite(motorRight[0], LOW);
+  digitalWrite(motorRight[0], LOW); 
   digitalWrite(motorRight[1], LOW);
 }
 
